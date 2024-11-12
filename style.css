@@ -1,9 +1,12 @@
+/* micanje pomične trake, margine i unutrašnji razmak na 0, border-box*/
 body {
-    overflow: hidden;margin: 0;
+    overflow: hidden;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* width i height tako da prekriju cijeli prozor, bijeli okvir i crna pozadina, margina i unutrašni razmak 0, border-box*/
 #gameCanvas {
     width: 100vw;
     height: 100vh;
