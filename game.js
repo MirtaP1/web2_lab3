@@ -2,7 +2,7 @@
 let canvas, ctx;
 let loptica, palica, cigle;
 //parametri igre, početna brzina i broj cigli 
-let lopticaBrzinaX = 2, lopticaBrzinaY = -2;
+let lopticaBrzinaX = 3, lopticaBrzinaY = -3;
 let palicaBrzina = 5;
 let ciglaRedovi = 3;
 let ciglaStupci = 5;
@@ -28,7 +28,12 @@ function inicijalizacija() {
     loptica = { x: canvas.width / 2, y: canvas.height - 50, radius: 10 };
     palica = { width: 150, height: 20, x: canvas.width / 2 - 75, y: canvas.height - 40 };
     cigle = kreirajCigle();
-    
+
+    //kretanje loptice prema gore pod slučajnim kutem
+    let randomAngle = Math.random() * (Math.PI / 4) + Math.PI / 4;
+    lopticaBrzinaX = 2 * Math.cos(randomAngle);
+    lopticaBrzinaY = -2 * Math.sin(randomAngle);
+
     //praćenje rezultata i kraja igre
     score = 0;
     maxScore = localStorage.getItem("maxScore") || 0;
@@ -64,12 +69,12 @@ function napraviIgru() {
     //čišćenje canvasa
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    //kreiranje loptice bez sjenčanja ruba, žute boje 
+    //kreiranje loptice bez sjenčanja ruba, ljubičaste boje 
     ctx.shadowBlur = 0;
     ctx.shadowColor = "transparent";
     ctx.beginPath();
     ctx.arc(loptica.x, loptica.y, loptica.radius, 0, Math.PI * 2);
-    ctx.fillStyle = "#F0E68C";
+    ctx.fillStyle = "#D8BFD8";
     ctx.fill();
     ctx.closePath();
 
@@ -78,11 +83,11 @@ function napraviIgru() {
     ctx.shadowColor = "#AA0000";
     ctx.beginPath();
     ctx.rect(palica.x, palica.y, palica.width, palica.height);
-    ctx.fillStyle = "#D2122E";
+    ctx.fillStyle = "#FF0000";
     ctx.fill();
     ctx.closePath();
 
-    //kreiranje cikli sa sjenčanjem ruba, plave boje
+    //kreiranje cigli sa sjenčanjem ruba, plave boje
     ctx.shadowBlur = 20;
     ctx.shadowColor = "#3457D5";
     for (let i = 0; i < cigle.length; i++) {
